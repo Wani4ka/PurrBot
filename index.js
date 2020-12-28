@@ -36,10 +36,11 @@ function channelsChange() {
 				channels.push(chan)
 		})
 		if (channels.length == 0) {return}
-		if (Math.random() < 0.75) {return}
+		if (Math.random() < 0.3) {return}
 		let chan = channels[Math.floor(Math.random() * channels.length)]
 		chan.join()
 			.then(connection => {
+				console.log('connected to ' + chan.name + ' in ' + g.name)
 				currentChannels.push(chan)
 				connection.play(broadcast) 
 			})
