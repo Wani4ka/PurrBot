@@ -1,5 +1,6 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const client = new Discord.Client()
+const express = require('express')
 
 let purrs = [
 	'https://orangefreesounds.com/wp-content/uploads/2020/02/Meowing-cat-sound.mp3',
@@ -54,3 +55,6 @@ client.on('ready', () => {
 
 client.login(process.env.DISCORD_TOKEN)
 
+// dirty hack for heroku
+var app = express()
+app.listen(process.env.PORT || 5000)
