@@ -37,12 +37,13 @@ function joinChannels() {
 		if (Math.random() < 0.5) {return}
 		let chan = channels[Math.floor(Math.random() * channels.length)]
 		chan.join()
-			.then(connection => {
-				console.log('connected to ' + chan.name + ' in ' + g.name)
-				currentChannels.push(chan)
-				connection.play(broadcast) 
-			})
-			.catch(console.log)
+		.then(connection => {
+			console.log('connected to ' + chan.name + ' in ' + g.name)
+			currentChannels.push(chan)
+			connection.play(broadcast) 
+		})
+		.catch(console.log)
+		g.voice.setMute(false)
 	})
 }
 
