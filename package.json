@@ -10,6 +10,9 @@
 		"purr",
 		"meow"
 	],
+	"scripts": {
+		"start": "node index.js"
+	},
 	"author": "Wani4ka",
 	"dependencies": {
 		"@discordjs/opus": "^0.3.3",
