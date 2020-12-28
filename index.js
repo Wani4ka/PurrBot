@@ -15,13 +15,13 @@ let broadcast
 
 function doPurr() {
 	if (Math.random() < 0.5) {
-		setTimeout(doPurr, 2500)
+		setTimeout(doPurr, 5000)
 		return
 	}
 	try {
 		const dispatch = broadcast.play(purrs[Math.floor(Math.random() * purrs.length)])
 		dispatch.setVolume(0.1)
-		dispatch.on('finish', () => setTimeout(doPurr, 2500))
+		dispatch.on('finish', () => setTimeout(doPurr, 5000))
 	} catch (err) { console.log(err) }
 }
 
@@ -34,7 +34,7 @@ function joinChannels() {
 				channels.push(chan)
 		})
 		if (channels.length == 0) {return}
-		if (Math.random() < 0.5) {return}
+		if (Math.random() < 0.7) {return}
 		let chan = channels[Math.floor(Math.random() * channels.length)]
 		chan.join()
 		.then(connection => {
