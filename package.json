@@ -1,0 +1,19 @@
+{
+	"name": "purrbot",
+	"version": "1.0.0",
+	"description": "A bot for discord, which walks into a random voice channel and starts purring like a cat",
+	"main": "index.js",
+	"keywords": [
+		"discord",
+		"bot",
+		"cat",
+		"purr",
+		"meow"
+	],
+	"author": "Wani4ka",
+	"dependencies": {
+		"@discordjs/opus": "^0.3.3",
+		"discord.js": "^12.5.1",
+		"ffmpeg-static": "^4.2.7"
+	}
+}
