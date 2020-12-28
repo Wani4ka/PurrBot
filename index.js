@@ -38,15 +38,13 @@ function channelsChange() {
 		if (channels.length == 0) {return}
 		if (Math.random() < 0.75) {return}
 		let chan = channels[Math.floor(Math.random() * channels.length)]
-		try {
-			let connection = await chan.join()
-			currentChannels.push(chan)
-			connection.play(broadcast) 
-		} catch(err) {
-			console.log(err)
-		}
+		chan.join()
+			.then(connection => {
+				currentChannels.push(chan)
+				connection.play(broadcast) 
+			})
+			.catch(console.log)
 	})
-	console.log('joined to ' + currentChannels.length + ' server(s)')
 }
 
 client.on('ready', () => {
