@@ -25,9 +25,7 @@ function doPurr() {
 	} catch (err) { console.log(err) }
 }
 
-function channelsChange() {
-	console.log('channel change!')
-	currentChannels.forEach((c) => c.leave())
+function joinChannels() {
 	currentChannels = []
 	client.guilds.cache.forEach((g) => {
 		let channels = []
@@ -36,7 +34,7 @@ function channelsChange() {
 				channels.push(chan)
 		})
 		if (channels.length == 0) {return}
-		if (Math.random() < 0.3) {return}
+		if (Math.random() < 0.5) {return}
 		let chan = channels[Math.floor(Math.random() * channels.length)]
 		chan.join()
 			.then(connection => {
@@ -46,6 +44,12 @@ function channelsChange() {
 			})
 			.catch(console.log)
 	})
+}
+
+function channelsChange() {
+	console.log('channel change!')
+	currentChannels.forEach((c) => c.leave())
+	setTimeout(joinChannels, 5000)
 }
 
 client.on('ready', () => {
