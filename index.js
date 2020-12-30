@@ -54,6 +54,11 @@ client.on('ready', () => {
 	setInterval(channelsChange, 60000)
 })
 
+client.on('message', async (msg) => {
+	if (msg.mentions.users.array().includes(client.user))
+		await msg.react('😻')
+})
+
 client.login(process.env.DISCORD_TOKEN)
 
 // dirty hack for heroku
