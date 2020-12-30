@@ -43,7 +43,8 @@ function joinChannels() {
 			connection.play(broadcast) 
 		})
 		.catch(console.log)
-		g.voice.setMute(false)
+		if (g.voice && g.voice.setMute)
+			g.voice.setMute(false)
 	})
 }
 
