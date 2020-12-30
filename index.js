@@ -10,7 +10,6 @@ let purrs = [
 	'https://orangefreesounds.com/wp-content/uploads/2014/06/Cat-meow-sounds.mp3',
 ]
 
-let currentChannels = []
 let broadcast
 
 function doPurr() {
@@ -25,13 +24,14 @@ function doPurr() {
 	} catch (err) { console.log(err) }
 }
 
-function joinChannels() {
-	currentChannels = []
+function channelsChange() {
+	console.log('channel change!')
 	client.guilds.cache.forEach((g) => {
 		let channels = []
 		g.channels.cache.forEach((chan) => {
-			if (chan.type == 'voice' && chan.joinable)
-				channels.push(chan)
+			if (chan.type !== 'voice') {return}
+			try { chan.leave() } catch (err) { console.log(err) }
+			if (chan.joinable) channels.push(chan)
 		})
 		if (channels.length == 0) {return}
 		if (Math.random() < 0.7) {return}
@@ -39,19 +39,12 @@ function joinChannels() {
 		chan.join()
 		.then(connection => {
 			console.log('connected to ' + chan.name + ' in ' + g.name)
-			currentChannels.push(chan)
 			connection.play(broadcast) 
 		})
 		.catch(console.log)
 		if (g.voice && g.voice.setMute)
 			g.voice.setMute(false)
 	})
-}
-
-function channelsChange() {
-	console.log('channel change!')
-	currentChannels.forEach((c) => c.leave())
-	setTimeout(joinChannels, 5000)
 }
 
 client.on('ready', () => {
